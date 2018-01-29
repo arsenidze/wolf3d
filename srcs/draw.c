@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 17:50:03 by amelihov          #+#    #+#             */
-/*   Updated: 2018/01/28 18:07:26 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/01/29 22:48:14 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void			draw(t_env *env)
 */
 
 #define SET_PIXEL(i, x, y, c) *(int *)(i.data + (y * WIN_W + x) * i.bpp) = c
+
 static void		put_line_to_img(t_env *env, int x, int y[2], int color)
 {
 	int		y_iter;
@@ -158,22 +159,50 @@ static double	dist_between(t_vect2d v1, t_vect2d v2)
 	return (sqrt(SQ(v1[X] - v2[X]) + SQ(v1[Y] - v2[Y])));
 }
 
-#define D_STEP 0.0001
+#define ABS(x) ((x) < 0 ? -(x) : (x))
+#define SIGN(x) ((x) < 0 ? -1 : ((x) != 0))
+
+static t_vect2d	step(t_vect2d ray, t_vect2d pos)
+{
+	t_vect2d	offset_to_side;
+	t_vect2d	step;
+
+
+	if (ray[X] > 0)
+		offset_to_side[X] = ((int)fabs(pos[X]) + 1 - fabs(pos[X]));
+	else
+		offset_to_side[X] = -1 * (fabs(pos[X]) - (int)fabs(pos[X]));
+	if (ray[Y] > 0)
+		offset_to_side[Y] = ((int)fabs(pos[Y]) + 1 - fabs(pos[Y]));
+	else
+		offset_to_side[Y] = -1 * (fabs(pos[Y]) - (int)fabs(pos[Y]));
+	printf("offset: %f %f\n", offset_to_side[X], offset_to_side[Y]);
+	sleep(2);
+	if (fabs(ray[Y] * offset_to_side[X]) < fabs(offset_to_side[Y] * ray[X]))
+	{
+		step[X] = offset_to_side[X];
+		step[Y] = step[X] * ray[Y] / ray[X];
+	}
+	else
+	{
+		step[Y] = offset_to_side[Y];
+		step[X] = step[Y] * ray[X] / ray[Y];
+	}
+	printf("step: %f %f\n", step[X], step[Y]);
+	sleep(2);
+	return (step);
+}
 
 static t_vect2d	cast_ray(t_vect2d ray, t_vect2d pos, t_map map)
 {
-	double		length;
-	t_vect2d	delta;
-
-	length = sqrt(SQ(ray[X]) + SQ(ray[Y]));
-	delta = ray / (t_vect2d){length, length};
-//	printf("_%f %f\n", ray[X], ray[Y]);
+	printf("pos0: %f %f\n", pos[X], pos[Y]);
+	sleep(2);
 	while (map.coord[(int)pos[X]][(int)pos[Y]] == 0)
 	{
-		pos += delta * (t_vect2d){D_STEP, D_STEP};
+		pos += step(ray, pos);
 	}
-//	printf("%f %f\n", pos[X], pos[Y]);
-	return ((t_vect2d){(int)pos[X], (int)pos[Y]});
+	printf("pos: %f %f\n", pos[X], pos[Y]);
+	return ((t_vect2d){pos[X], pos[Y]});
 }
 
 #define LINE_HEIGHT WIN_H
@@ -190,10 +219,10 @@ void			draw(t_env *env)
 	x = 0;
 	while (x < WIN_W)
 	{
-		//printf("x: %d\n", x);
+		printf("x: %d\n", x);
 		ray = env->game.player.dir + env->game.player.plane *
 		(t_vect2d){x * 1. / WIN_W - 0.5, x * 1. / WIN_W - 0.5};
-//		printf("+_%f %f\n", ray[X], ray[Y]);
+		printf("+_%f %f\n", ray[X], ray[Y]);
 		hit = cast_ray(ray, env->game.player.pos, env->game.map);
 		dist = dist_between(env->game.player.pos, hit);
 		y[0] = WIN_H / 2 - LINE_HEIGHT / dist;
