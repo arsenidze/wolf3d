@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:41:30 by amelihov          #+#    #+#             */
-/*   Updated: 2018/01/28 18:30:43 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:56:43 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define DIR_STEP 1
-#define ROTATE_ANGLE 10.0 * M_PI / 180.0
+#define DIR_STEP 0.5
+#define ROTATE_ANGLE 4.0 * M_PI / 180.0
 
 int		key_press_hook(int keycode, void *arg)
 {

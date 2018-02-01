@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 22:29:23 by amelihov          #+#    #+#             */
-/*   Updated: 2018/01/28 18:24:57 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/02/01 20:13:00 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define WIN_H 800
 
 typedef double	t_vect2d __attribute__((vector_size(sizeof(double)*2)));
-//typedef int		t_vect2i __attribute__((vector_size(sizeof(int)*2)));
+typedef int		t_vect2i __attribute__((vector_size(sizeof(int)*2)));
 
 #define X 0
 #define Y 1
@@ -87,9 +87,9 @@ int				**create_map(char **line, int *w, int *h);
 void			*free_map(int ***map);
 
 void			draw(t_env *env);
-int				get_color(int x, int y, int **map);
+int				match_color(int x, int y, int **map);
 
-void	move(t_player *hero, t_map *map, float step);
-void	rotate(t_player *hero, t_map *map, float angle);
+void			move(t_player *hero, t_map *map, float step);
+void			rotate(t_player *hero, t_map *map, float angle);
 
 #endif

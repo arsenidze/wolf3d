@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 21:15:49 by amelihov          #+#    #+#             */
-/*   Updated: 2018/01/28 17:52:54 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:46:43 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int			main(int argc, char **argv)
 	mlx_hook(env.win, KEY_PRESS, 0, key_press_hook, &env);
 	mlx_hook(env.win, DESTROY_NOTIFY, 0, exit_hook, &env);
 //	mlx_loop_hook(env.mlx, loop_hook, &env);
+	draw(&env);
 	mlx_loop(env.mlx);
 }

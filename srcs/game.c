@@ -6,16 +6,16 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:24:53 by amelihov          #+#    #+#             */
-/*   Updated: 2018/01/28 15:12:18 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/02/01 19:47:10 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include "libft.h"
 
-#define INITIAL_POS (t_vect2d){22., 12.}
-#define DEFAULT_DIR (t_vect2d){-1., 0.}
-#define DEFAULT_PLANE (t_vect2d){0.0, 1.3}
+#define INITIAL_POS (t_vect2d){2., 2.}
+#define DEFAULT_DIR (t_vect2d){0., 1.}
+#define DEFAULT_PLANE (t_vect2d){1.3, 0.0}
 
 void	init_game(t_game *game, int **map, int w, int h)
 {
