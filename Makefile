@@ -6,14 +6,17 @@ INC_DIR = ./includes/
 LIB_DIR = ./lib/
 
 SRC =	main.c \
-	  	validation.c \
+		validation.c \
 		create_map.c \
-	  	env.c \
-	  	game.c \
-	 	hooks.c \
-	  	draw.c \
+		env.c \
+		user_input.c \
+		game.c \
+		hooks.c \
+		draw.c \
+		draw_helpers.c \
 		color.c \
 		transform.c \
+		texture.c \
 
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
