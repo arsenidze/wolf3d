@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 18:11:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/03/10 14:54:48 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/02/22 17:01:36 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ double			get_x_in_texture(t_vect2d hit, t_vect2d dir, int **map)
 #define GET_LEN(v) (sqrt(v[X] * v[X] + v[Y] * v[Y]))
 #define DOT_PROD(a, b) (a[X] * b[X] + a[Y] * b[Y])
 #define COS_BETWEEN_VECTS(a, b) (DOT_PROD(a, b) / (GET_LEN(a) * GET_LEN(b)))
-#define WALL_HEIGHT WIN_W
+#define WALL_HEIGHT (WIN_W)
 
 t_range_in_img	get_range_in_img(int x, t_vect2d hit, t_vect2d ray_dir,
 				t_player *player)
