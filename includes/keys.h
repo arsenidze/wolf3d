@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:39:01 by amelihov          #+#    #+#             */
-/*   Updated: 2018/01/28 18:04:44 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/03/27 14:18:32 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@
 # define BTN_SEVEN 89
 # define BTN_EIGHT 91
 # define BTN_SPACE 49
+# define BTN_TAB 48
+# define BTN_SHIFT 257
 # define BTN_W 13
 # define BTN_A 0
 # define BTN_S 1
 # define BTN_D 2
+# define BTN_Z 6
 
 #endif

@@ -6,15 +6,15 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/23 18:37:28 by amelihov          #+#    #+#              #
-#    Updated: 2018/01/19 14:25:24 by amelihov         ###   ########.fr        #
+#    Updated: 2018/03/27 21:32:58 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC_DIR = ./srcs/
-OBJ_DIR = ./obj/
-INC_DIR = ./includes/
+SRC_DIR = ./srcs
+OBJ_DIR = ./obj
+INC_DIR = ./includes
 
 SRC = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_memset.c \
 	  ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
@@ -46,9 +46,9 @@ SRC = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_memset.c \
 		ft_sign.c \
 		list_strs_del.c \
 	
-OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-INC = $(INC_DIR)libft.h $(INC_DIR)get_next_line.h
+INC = $(INC_DIR)/libft.h $(INC_DIR)/get_next_line.h
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
@@ -61,13 +61,19 @@ all: $(NAME)
 $(NAME): $(OBJ) $(INC)
 	ar rc $(NAME) $(OBJ)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC)
 	$(CC) $(CFLAGS) $(HFLAGS) -c $< -o $@
 
+$(OBJ): | $(OBJ_DIR)
+
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+
 clean:
-	/bin/rm -r -f $(OBJ)
+	/bin/rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -r -f $(NAME)
+	/bin/rm -f $(NAME)
+	/bin/rm -rf $(OBJ_DIR)
 
 re: fclean all
